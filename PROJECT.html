@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI & Space Travel 2075</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.development.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.2/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background: linear-gradient(180deg, #0a0a23 0%, #1e3a8a 100%);
+      color: #e0f7fa;
+      font-family: 'Arial', sans-serif;
+      overflow-x: hidden;
+    }
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .stars::before {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      box-shadow: 50vw 10vh 0 white, 20vw 80vh 0 white, 70vw 50vh 0 white, 30vw 30vh 0 white, 90vw 90vh 0 white;
+      animation: twinkle 3s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .rocket {
+      position: absolute;
+      bottom: -50px;
+      right: 20px;
+      width: 50px;
+      animation: launch 5s infinite;
+    }
+    @keyframes launch {
+      0% { transform: translateY(100vh); }
+      100% { transform: translateY(-100vh); }
+    }
+  </style>
+</head>
+<body class="relative min-h-screen">
+  <div class="stars"></div>
+  <img src="https://img.icons8.com/fluency/48/rocket.png" alt="Rocket" class="rocket" />
+
+  <div id="root" class="container mx-auto p-4"></div>
+
+  <script type="text/babel">
+    const App = () => {
+      const [destination, setDestination] = React.useState('');
+
+      const handleDestinationChange = (e) => {
+        setDestination(e.target.value);
+      };
+
+      return (
+        <div className="space-y-8">
+          {/* Header Section */}
+          <header className="text-center py-6">
+            <h1 className="text-5xl font-bold animate-pulse text-cyan-300">
+              AI & Space Travel: 2075
+            </h1>
+            <p className="text-lg mt-2 text-gray-300">
+              Discover how AI is revolutionizing space exploration in the future!
+            </p>
+          </header>
+
+          {/* Main Content */}
+          <main className="space-y-12">
+            {/* Intro Section */}
+            <section className="bg-gray-900 bg-opacity-80 p-6 rounded-lg shadow-lg">
+              <h2 className="text-3xl font-semibold text-cyan-200 mb-4">
+                Welcome to the Future of Space Travel
+              </h2>
+              <p className="text-gray-200">
+                In 2075, AI helps humans travel to space like never before! From designing spacecraft to navigating distant planets, AI makes space exploration faster, safer, and more exciting. Imagine a city where AI-powered rockets launch from skyscrapers, guided by intelligent systems that predict the best routes through the stars.
+              </p>
+            </section>
+
+            {/* AI Features Section */}
+            <section className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-gray-800 bg-opacity-70 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                <h3 className="text-2xl font-semibold text-cyan-100 mb-2">
+                  AI Navigation
+                </h3>
+                <p className="text-gray-300">
+                  AI systems analyze star maps and cosmic weather to guide spacecraft through the safest and fastest paths, avoiding asteroids and solar storms.
+                </p>
+              </div>
+              <div className="bg-gray-800 bg-opacity-70 p-4 rounded-lg shadow-lg hover:scale-105 transition-transform">
+                <h3 className="text-2xl font-semibold text-cyan-100 mb-2">
+                  Smart Spacecraft Design
+                </h3>
+                <p className="text-gray-300">
+                  AI designs lightweight, durable spacecraft using advanced materials, optimizing for speed and fuel efficiency to reach Mars in just weeks!
+                </p>
+              </div>
+            </section>
+
+            {/* Interactive Section */}
+            <section className="bg-gray-900 bg-opacity-80 p-6 rounded-lg shadow-lg">
+              <h2 className="text-3xl font-semibold text-cyan-200 mb-4">
+                Plan Your Space Journey
+              </h2>
+              <p className="text-gray-200 mb-4">
+                Choose a destination, and let AI plan your trip to space!
+              </p>
+              <select
+                value={destination}
+                onChange={handleDestinationChange}
+                className="p-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              >
+                <option value="">Select a Destination</option>
+                <option value="Mars">Mars</option>
+                <option value="Europa">Europa (Jupiter's Moon)</option>
+                <option value="Titan">Titan (Saturn's Moon)</option>
+              </select>
+              {destination && (
+                <p className="mt-4 text-gray-200">
+                  AI has planned your trip to {destination}! Expected travel time: 3 weeks with AI-optimized routes. You'll explore {destination}'s unique landscapes with AI-guided rovers.
+                </p>
+              )}
+            </section>
+
+            {/* Fun Fact Section */}
+            <section className="text-center bg-gray-900 bg-opacity-80 p-6 rounded-lg shadow-lg">
+              <h2 className="text-3xl font-semibold text-cyan-200 mb-4">
+                Did You Know?
+              </h2>
+              <p className="text-gray-200">
+                By 2075, AI will reduce space travel costs by 90%, making it possible for schools to take field trips to the Moon!
+              </p>
+            </section>
+          </main>
+
+          {/* Footer */}
+          <footer className="text-center py-6">
+            <p className="text-gray-400">
+              Learning from the Past, Planning for the Future | 2025
+            </p>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
